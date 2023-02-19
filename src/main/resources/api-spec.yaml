@@ -1,0 +1,61 @@
+openapi: 3.0.2
+info:
+    title: The CRM Service API
+    version: 1.0.0
+    description: A brand new API with no content.  Go nuts!
+paths:
+    /v1/customer:
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/CustomerListDTO'
+                    description: Returns a customer list
+            operationId: getCustomers
+            summary: Get all customers in DB
+components:
+    schemas:
+        CustomerDTO:
+            title: Root Type for CustomerDTO
+            description: ''
+            required:
+                - id
+                - name
+                - surname
+            type: object
+            properties:
+                id:
+                    type: string
+                name:
+                    type: string
+                surname:
+                    type: string
+                lastUpdateBy:
+                    type: string
+                createdBy:
+                    type: string
+            example:
+                id: dummyId
+                name: dummyName
+                surname: dummySurname
+                lastUpdateBy: fakeUser
+                createdBy: fakeUser
+        CustomerListDTO:
+            title: Root Type for CustomerListDTO
+            description: ''
+            type: array
+            items:
+                $ref: '#/components/schemas/CustomerDTO'
+            example:
+                -
+                    id: dummyId
+                    name: dummyName
+                    surname: dummySurname
+                    lastUpdateBy: fakeUser
+                    createdBy: fakeUser
+tags:
+    -
+        name: CRMApi
+        description: ''
