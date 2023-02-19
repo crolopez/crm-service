@@ -10,6 +10,17 @@ To build the application it is necessary to install the following dependencies:
 - [JDK 17](https://openjdk.org/projects/jdk/17/)
 - [Docker](https://www.docker.com/) (if you want to build it as a dockerized application)
 
+## Configuration
+
+In order to launch the application, it is necessary to configure the following environment variables:
+
+| Variable    | Description                                                                             |
+|-------------|-----------------------------------------------------------------------------------------|
+| DATASOURCE  | Datasource of a PostgreSQL database. Example: jdbc:postgresql://localhost:5432/postgres |
+| DB_USERNAME | Database username                                                                       |
+| DB_PASSWORD | Database password                                                                       |
+
+
 ## Run locally
 
 To deploy the application locally just run:
@@ -24,5 +35,11 @@ If you want to build the application in a dockerized environment:
 ```bash
 mvn clean install
 mvn io.fabric8:fabric8-maven-plugin:build
-docker run -p 8080:8080 the-crm-service
+docker run -p 8080:8080 --env DATASOURCE="<DATASOURCE>" --env DB_USERNAME="<DB_USERNAME>" --env DB_PASSWORD="<DB_PASSWORD>" the-crm-service
 ```
+
+## How to deploy
+
+In [this file](./.github/workflows/cicd.yml) you can find an example of how to deploy this application in a dockerized environment on AWS. 
+
+The recipe shows the steps to run the corresponding CI/CD, and you would only need to configure the secrets based on your personal AWS and Amazon ECS credentials.

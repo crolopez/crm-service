@@ -11,13 +11,13 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/CustomerListDTO'
+                                $ref: '#/components/schemas/CustomerList'
                     description: Returns a customer list
             operationId: getCustomers
-            summary: Get all customers in DB
+            summary: Get all customer in DB
 components:
     schemas:
-        CustomerDTO:
+        Customer:
             title: Root Type for CustomerDTO
             description: ''
             required:
@@ -40,14 +40,14 @@ components:
                 id: dummyId
                 name: dummyName
                 surname: dummySurname
-                lastUpdateBy: fakeUser
+                lastUpdateBy: fakeDate
                 createdBy: fakeUser
-        CustomerListDTO:
+        CustomerList:
             title: Root Type for CustomerListDTO
             description: ''
             type: array
             items:
-                $ref: '#/components/schemas/CustomerDTO'
+                $ref: '#/components/schemas/Customer'
             example:
                 -
                     id: dummyId
