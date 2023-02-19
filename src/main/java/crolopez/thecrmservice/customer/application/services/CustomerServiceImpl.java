@@ -40,4 +40,11 @@ public class CustomerServiceImpl implements CustomerService{
         CustomerEntity customerEntity = customerEntityRepository.get(id);
         return customerResponseFactory.create(customerEntity);
     }
+
+    @Override
+    public CustomerDto deleteCustomer(String id) {
+        CustomerEntity customerEntity = customerEntityRepository.get(id);
+        customerEntityRepository.delete(id);
+        return customerResponseFactory.create(customerEntity);
+    }
 }

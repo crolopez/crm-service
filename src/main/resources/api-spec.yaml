@@ -42,6 +42,16 @@ paths:
                     description: OK
             operationId: getCustomer
             summary: Get customer
+        delete:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Customer'
+                    description: OK
+            operationId: deleteCustomer
+            summary: Delete customer
         parameters:
             -
                 name: id

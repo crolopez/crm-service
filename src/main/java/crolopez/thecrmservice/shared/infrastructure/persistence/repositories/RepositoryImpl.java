@@ -27,6 +27,12 @@ abstract public class RepositoryImpl<DbEntity, Entity> implements Repository<Ent
     }
 
     @Override
+    public void delete(String id) {
+        unitOfWork.delete(id, dbEntityClass);
+    }
+
+
+    @Override
     public List<Entity> get() {
         List<DbEntity> dbEntities = unitOfWork.get(dbEntityClass);
 

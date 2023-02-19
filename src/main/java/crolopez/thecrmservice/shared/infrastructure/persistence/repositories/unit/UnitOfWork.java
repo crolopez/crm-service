@@ -8,6 +8,7 @@ public interface UnitOfWork {
 
     <Entity> List<Entity> get(Class<Entity> entityType);
 
-    <DbEntity> void create(DbEntity dbEntityClass);
+    <Entity> void create(Entity dbEntityClass);
 
+    <Entity> void delete(String id, Class<Entity> entityType);
 }

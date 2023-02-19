@@ -21,14 +21,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
     @Override
     public <Value, Entity> List<Entity> get(String field, Value value, Class<Entity> entityType) {
         prepareTransaction();
-        Session session = sessionFactory.getCurrentSession();
-
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery criteria = criteriaBuilder.createQuery(entityType);
-        Root<Entity> root = criteria.from(entityType);
-        criteria.where(criteriaBuilder.equal(root.get(field), value));
-
-        return session.createQuery(criteria).getResultList();
+        return getEntity(field, value, entityType);
     }
 
     @Transactional
@@ -54,9 +47,30 @@ public class UnitOfWorkImpl implements UnitOfWork {
         prepareTransaction();
     }
 
+    @Transactional
+    @Override
+    public <Entity> void delete(String id, Class<Entity> entityType) {
+        prepareTransaction();
+        var entity = getEntity("id", id, entityType).get(0);
+        sessionFactory.getCurrentSession().delete(entity);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+        prepareTransaction();
+    }
+
     private void prepareTransaction() {
         if (!sessionFactory.getCurrentSession().getTransaction().isActive())
             sessionFactory.getCurrentSession().beginTransaction();
+    }
+
+    private <Entity, Value> List<Entity> getEntity(String field, Value value, Class<Entity> entityType) {
+        Session session = sessionFactory.getCurrentSession();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery criteria = criteriaBuilder.createQuery(entityType);
+        Root<Entity> root = criteria.from(entityType);
+        criteria.where(criteriaBuilder.equal(root.get(field), value));
+
+        return session.createQuery(criteria).getResultList();
     }
 
 }
