@@ -22,7 +22,7 @@ abstract public class RepositoryImpl<DbEntity, Entity> implements Repository<Ent
     private final Class<DbEntity> dbEntityClass;
 
     @Override
-    public Entity get(UUID id) {
+    public Entity get(String id) {
         return get("id", id).get(0);
     }
 

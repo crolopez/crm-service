@@ -31,6 +31,25 @@ paths:
                     description: OK
             operationId: createCustomer
             summary: Create a customer
+    '/v1/customer/{id}':
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Customer'
+                    description: OK
+            operationId: getCustomer
+            summary: Get customer
+        parameters:
+            -
+                name: id
+                description: Customer ID
+                schema:
+                    type: string
+                in: path
+                required: true
 components:
     schemas:
         Customer:

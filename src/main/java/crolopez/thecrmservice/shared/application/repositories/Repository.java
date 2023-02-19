@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface Repository<Entity> {
-    Entity get(UUID id);
+    Entity get(String id);
     List<Entity> get();
     Entity create(Entity customerEntity);
 }
