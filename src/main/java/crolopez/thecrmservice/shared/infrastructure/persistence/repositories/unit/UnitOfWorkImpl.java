@@ -1,6 +1,7 @@
 package crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
 
 import crolopez.thecrmservice.shared.infrastructure.persistence.models.CustomerDbEntity;
+import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
+import java.lang.reflect.Field;
 import java.util.List;
 
 @Component
@@ -53,6 +56,30 @@ public class UnitOfWorkImpl implements UnitOfWork {
         prepareTransaction();
         var entity = getEntity("id", id, entityType).get(0);
         sessionFactory.getCurrentSession().delete(entity);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+        prepareTransaction();
+    }
+
+    @SneakyThrows
+    @Transactional
+    @Override
+    public <Entity> void update(String id, Entity dbEntity, Class<Entity> entityType) {
+        prepareTransaction();
+        Session session = sessionFactory.getCurrentSession();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaUpdate criteria = criteriaBuilder.createCriteriaUpdate(entityType);
+        Root<Entity> root = criteria.from(entityType);
+
+        Field[] fields = entityType.getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object value = field.get(dbEntity);
+            criteria.set(root.get(field.getName()), criteriaBuilder.literal(value));
+        }
+
+        criteria.where(criteriaBuilder.equal(root.get("id"), id));
+        session.createQuery(criteria).executeUpdate();
         sessionFactory.getCurrentSession().getTransaction().commit();
         prepareTransaction();
     }

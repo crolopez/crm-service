@@ -46,6 +46,13 @@ abstract public class RepositoryImpl<DbEntity, Entity> implements Repository<Ent
         return customerEntity;
     }
 
+    @Override
+    public Entity update(String id, Entity customerEntity) {
+        DbEntity dbEntity = mapper.entityToDbEntity(customerEntity);
+        unitOfWork.update(id, dbEntity, dbEntityClass);
+        return customerEntity;
+    }
+
     protected <FilterType> List<Entity> get(String field, FilterType filterValue) {
         List<DbEntity> dbEntities = unitOfWork.get(field, filterValue, dbEntityClass);
 

@@ -42,6 +42,22 @@ paths:
                     description: OK
             operationId: getCustomer
             summary: Get customer
+        put:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Customer'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Customer'
+                    description: OK
+            operationId: updateCustomer
+            summary: Update customer
         delete:
             responses:
                 '200':
@@ -62,6 +78,19 @@ paths:
                 required: true
 components:
     schemas:
+        CustomerList:
+            title: Root Type for CustomerListDTO
+            description: ''
+            type: array
+            items:
+                $ref: '#/components/schemas/Customer'
+            example:
+                -
+                    id: dummyId
+                    name: dummyName
+                    surname: dummySurname
+                    lastUpdateBy: fakeUser
+                    createdBy: fakeUser
         Customer:
             title: Root Type for CustomerDTO
             description: ''
@@ -87,19 +116,6 @@ components:
                 surname: dummySurname
                 lastUpdateBy: fakeDate
                 createdBy: fakeUser
-        CustomerList:
-            title: Root Type for CustomerListDTO
-            description: ''
-            type: array
-            items:
-                $ref: '#/components/schemas/Customer'
-            example:
-                -
-                    id: dummyId
-                    name: dummyName
-                    surname: dummySurname
-                    lastUpdateBy: fakeUser
-                    createdBy: fakeUser
 tags:
     -
         name: CRMApi

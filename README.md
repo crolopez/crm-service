@@ -2,6 +2,8 @@
 
 The purpose of this project is to define a REST API to manage customer data for a small store.
 
+You can check the available endpoints from the OpenAPI specification that you can find in [api-spec.yaml](./src/main/resources/api-spec.yaml) file, or import the Insomnia collection from [insomnia-collection.json](./insomnia-collection.json).
+
 ## Requirements
 
 To build the application it is necessary to install the following dependencies:

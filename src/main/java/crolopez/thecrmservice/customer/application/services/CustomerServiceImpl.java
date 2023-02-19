@@ -31,6 +31,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto) {
         CustomerEntity customerEntity = customerEntityFactory.create(customerDto);
+        customerEntity.setCreatedBy("???");
         customerEntity = customerEntityRepository.create(customerEntity);
         return customerResponseFactory.create(customerEntity);
     }
@@ -45,6 +46,17 @@ public class CustomerServiceImpl implements CustomerService{
     public CustomerDto deleteCustomer(String id) {
         CustomerEntity customerEntity = customerEntityRepository.get(id);
         customerEntityRepository.delete(id);
+        return customerResponseFactory.create(customerEntity);
+    }
+
+    @Override
+    public CustomerDto updateCustomer(String id, CustomerDto customerDto) {
+        CustomerEntity customerEntity = customerEntityRepository.get(id);
+        customerEntity.setId(customerDto.getId());
+        customerEntity.setName(customerDto.getName());
+        customerEntity.setSurname(customerDto.getSurname());
+        customerEntity.setLastUpdateBy("¿¿¿");
+        customerEntity = customerEntityRepository.update(id, customerEntity);
         return customerResponseFactory.create(customerEntity);
     }
 }
