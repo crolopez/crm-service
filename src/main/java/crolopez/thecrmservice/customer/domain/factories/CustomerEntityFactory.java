@@ -5,7 +5,6 @@ import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
 
 import java.util.List;
 
-public interface CustomerResponseFactory {
-    List<CustomerDto> create(List<CustomerEntity> customerEntities);
-    CustomerDto create(CustomerEntity customerEntity);
+public interface CustomerEntityFactory {
+    CustomerEntity create(CustomerDto customerDto);
 }

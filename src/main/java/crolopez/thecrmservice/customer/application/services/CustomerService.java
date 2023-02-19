@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CustomerService {
     List<CustomerDto> getCustomers();
+
+    CustomerDto createCustomer(CustomerDto customerDto);
 }

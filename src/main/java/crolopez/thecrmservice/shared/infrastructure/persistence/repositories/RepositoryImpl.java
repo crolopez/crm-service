@@ -33,6 +33,13 @@ abstract public class RepositoryImpl<DbEntity, Entity> implements Repository<Ent
         return dbEntities.stream().map(x -> mapper.dbEntityToEntity(x)).toList();
     }
 
+    @Override
+    public Entity create(Entity customerEntity) {
+        DbEntity dbEntity = mapper.entityToDbEntity(customerEntity);
+        unitOfWork.create(dbEntity);
+        return customerEntity;
+    }
+
     protected <FilterType> List<Entity> get(String field, FilterType filterValue) {
         List<DbEntity> dbEntities = unitOfWork.get(field, filterValue, dbEntityClass);
 

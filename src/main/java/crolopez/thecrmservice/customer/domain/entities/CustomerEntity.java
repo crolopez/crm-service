@@ -9,7 +9,7 @@ import java.util.UUID;
 @Getter
 @Builder
 public class CustomerEntity {
-    private UUID id;
+    private String id;
 
     private String name;
 

@@ -20,4 +20,15 @@ public class CustomerResponseFactoryImpl implements CustomerResponseFactory {
             return customer;
         }).toList();
     }
+
+    @Override
+    public CustomerDto create(CustomerEntity customerEntity) {
+        var customer = new CustomerDto();
+        customer.setId(customerEntity.getId().toString());
+        customer.setName(customerEntity.getName());
+        customer.setSurname(customerEntity.getSurname());
+        customer.setLastUpdateBy(customerEntity.getLastUpdateBy());
+        customer.createdBy(customerEntity.getCreatedBy());
+        return customer;
+    }
 }

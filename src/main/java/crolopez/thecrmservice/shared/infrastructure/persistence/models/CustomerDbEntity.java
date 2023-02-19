@@ -15,9 +15,8 @@ import java.util.UUID;
 public class CustomerDbEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="ID", nullable=false, unique=true)
-    private UUID id;
+    private String id;
 
     @Column(name="NAME", nullable=false)
     private String name;

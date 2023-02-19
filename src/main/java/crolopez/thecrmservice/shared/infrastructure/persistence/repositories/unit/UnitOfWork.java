@@ -7,4 +7,7 @@ public interface UnitOfWork {
     <Value, Entity> List<Entity> get(String field, Value value, Class<Entity> entityType);
 
     <Entity> List<Entity> get(Class<Entity> entityType);
+
+    <DbEntity> void create(DbEntity dbEntityClass);
+
 }

@@ -12,18 +12,34 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/CustomerList'
-                    description: Returns a customer list
+                    description: OK
             operationId: getCustomers
-            summary: Get all customer in DB
+            summary: Get all customer
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Customer'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Customer'
+                    description: OK
+            operationId: createCustomer
+            summary: Create a customer
 components:
     schemas:
         Customer:
             title: Root Type for CustomerDTO
             description: ''
             required:
-                - id
                 - name
                 - surname
+                - id
             type: object
             properties:
                 id:

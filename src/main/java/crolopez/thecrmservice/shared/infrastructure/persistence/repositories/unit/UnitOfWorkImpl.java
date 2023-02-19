@@ -1,5 +1,6 @@
 package crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
 
+import crolopez.thecrmservice.shared.infrastructure.persistence.models.CustomerDbEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,15 @@ public class UnitOfWorkImpl implements UnitOfWork {
         criteria.select(root);
 
         return session.createQuery(criteria).getResultList();
+    }
+
+    @Transactional
+    @Override
+    public <DbEntity> void create(DbEntity dbEntity) {
+        prepareTransaction();
+        sessionFactory.getCurrentSession().save(dbEntity);
+        sessionFactory.getCurrentSession().getTransaction().commit();
+        prepareTransaction();
     }
 
     private void prepareTransaction() {
