@@ -114,6 +114,22 @@ paths:
                     description: OK
             operationId: getUser
             summary: Get user
+        put:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                    description: OK
+            operationId: updateUser
+            summary: Update user
         delete:
             responses:
                 '200':

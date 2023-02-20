@@ -1,6 +1,5 @@
 package crolopez.thecrmservice.user.application.services;
 
-import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.shared.application.repositories.Repository;
 import crolopez.thecrmservice.shared.domain.dtos.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
@@ -46,6 +45,14 @@ public class UserServiceImpl implements UserService{
     public UserDto deleteUser(String id) {
         UserEntity userEntity = userEntityRepository.get(id);
         userEntityRepository.delete(id);
+        return userResponseFactory.create(userEntity);
+    }
+
+    @Override
+    public UserDto updateUser(String id, UserDto userDto) {
+        userEntityRepository.get(id);
+        UserEntity userEntity = userEntityFactory.create(userDto);
+        userEntity = userEntityRepository.update(id, userEntity);
         return userResponseFactory.create(userEntity);
     }
 }
