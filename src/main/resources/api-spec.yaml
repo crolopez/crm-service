@@ -114,6 +114,16 @@ paths:
                     description: OK
             operationId: getUser
             summary: Get user
+        delete:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                    description: OK
+            operationId: deleteUser
+            summary: Delete user
         parameters:
             -
                 name: id

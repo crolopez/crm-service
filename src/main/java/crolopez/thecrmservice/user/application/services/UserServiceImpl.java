@@ -41,4 +41,11 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userEntityRepository.get(id);
         return userResponseFactory.create(userEntity);
     }
+
+    @Override
+    public UserDto deleteUser(String id) {
+        UserEntity userEntity = userEntityRepository.get(id);
+        userEntityRepository.delete(id);
+        return userResponseFactory.create(userEntity);
+    }
 }

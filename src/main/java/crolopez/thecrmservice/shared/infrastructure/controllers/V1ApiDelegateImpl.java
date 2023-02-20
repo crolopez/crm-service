@@ -63,4 +63,9 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
         return ResponseEntity.ok().body(userService.getUser(id));
     }
 
+    @Override
+    public ResponseEntity<UserDto> deleteUser(String id) {
+        return ResponseEntity.ok().body(userService.deleteUser(id));
+    }
+
 }

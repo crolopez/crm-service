@@ -49,6 +49,7 @@ The recipe shows the steps to run the corresponding CI/CD, and you would only ne
 ## TODO
 
 - Admin endpoints
+- Role authentication
 - Allow to save customer photos
 - Improve test coverage
 - Implement basic security measures
