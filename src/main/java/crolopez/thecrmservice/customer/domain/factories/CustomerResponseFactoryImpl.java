@@ -24,7 +24,7 @@ public class CustomerResponseFactoryImpl implements CustomerResponseFactory {
     @Override
     public CustomerDto create(CustomerEntity customerEntity) {
         var customer = new CustomerDto();
-        customer.setId(customerEntity.getId().toString());
+        customer.setId(customerEntity.getId());
         customer.setName(customerEntity.getName());
         customer.setSurname(customerEntity.getSurname());
         customer.setLastUpdateBy(customerEntity.getLastUpdateBy());

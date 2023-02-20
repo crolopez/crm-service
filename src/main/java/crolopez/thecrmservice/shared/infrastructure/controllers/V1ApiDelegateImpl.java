@@ -1,11 +1,14 @@
 package crolopez.thecrmservice.shared.infrastructure.controllers;
 
+import crolopez.thecrmservice.api.ApiUtil;
 import crolopez.thecrmservice.api.V1ApiDelegate;
 import crolopez.thecrmservice.customer.application.services.CustomerService;
 import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
 import crolopez.thecrmservice.shared.domain.dtos.UserDto;
 import crolopez.thecrmservice.user.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -48,6 +51,11 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
     @Override
     public ResponseEntity<List<UserDto>> getUsers() {
         return ResponseEntity.ok().body(userService.getUsers());
+    }
+
+    @Override
+    public ResponseEntity<UserDto> createUser(UserDto userDto) {
+        return ResponseEntity.ok().body(userService.createUser(userDto));
     }
 
 }

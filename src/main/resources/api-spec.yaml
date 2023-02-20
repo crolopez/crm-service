@@ -87,6 +87,22 @@ paths:
                     description: OK
             operationId: getUsers
             summary: Get users
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
+                required: true
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                    description: OK
+            operationId: createUser
+            summary: Create user
 components:
     schemas:
         CustomerList:

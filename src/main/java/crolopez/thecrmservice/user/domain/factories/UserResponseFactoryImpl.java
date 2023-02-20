@@ -17,4 +17,12 @@ public class UserResponseFactoryImpl implements UserResponseFactory {
             return user;
         }).toList();
     }
+
+    @Override
+    public UserDto create(UserEntity userEntity) {
+        var user = new UserDto();
+        user.setId(userEntity.getId());
+        user.setIsAdmin(userEntity.getIsAdmin());
+        return user;
+    }
 }
