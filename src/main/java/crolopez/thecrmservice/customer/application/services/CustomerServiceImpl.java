@@ -54,6 +54,7 @@ public class CustomerServiceImpl implements CustomerService{
         CustomerEntity customerEntity = customerEntityRepository.get(id);
         customerEntity.setId(customerDto.getId());
         customerEntity.setName(customerDto.getName());
+        customerEntity.setImageUrl(customerDto.getImageUrl());
         customerEntity.setSurname(customerDto.getSurname());
         customerEntity.setLastUpdateBy("¿¿¿");
         customerEntity = customerEntityRepository.update(id, customerEntity);

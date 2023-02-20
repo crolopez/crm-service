@@ -17,4 +17,6 @@ public class CustomerEntity {
     private String lastUpdateBy;
 
     private String createdBy;
+
+    private String imageUrl;
 }

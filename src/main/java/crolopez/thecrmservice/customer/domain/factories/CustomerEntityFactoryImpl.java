@@ -12,6 +12,7 @@ public class CustomerEntityFactoryImpl implements CustomerEntityFactory {
                 .id(customerDto.getId())
                 .name(customerDto.getName())
                 .surname(customerDto.getSurname())
+                .imageUrl(customerDto.getImageUrl())
                 .build();
     }
 }

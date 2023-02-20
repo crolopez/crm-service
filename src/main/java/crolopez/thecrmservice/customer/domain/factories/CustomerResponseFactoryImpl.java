@@ -17,6 +17,7 @@ public class CustomerResponseFactoryImpl implements CustomerResponseFactory {
             customer.setSurname(x.getSurname());
             customer.setLastUpdateBy(x.getLastUpdateBy());
             customer.createdBy(x.getCreatedBy());
+            customer.imageUrl(x.getImageUrl());
             return customer;
         }).toList();
     }
@@ -29,6 +30,7 @@ public class CustomerResponseFactoryImpl implements CustomerResponseFactory {
         customer.setSurname(customerEntity.getSurname());
         customer.setLastUpdateBy(customerEntity.getLastUpdateBy());
         customer.createdBy(customerEntity.getCreatedBy());
+        customer.imageUrl(customerEntity.getImageUrl());
         return customer;
     }
 }

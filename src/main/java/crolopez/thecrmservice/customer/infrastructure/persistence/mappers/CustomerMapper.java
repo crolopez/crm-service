@@ -16,6 +16,7 @@ public class CustomerMapper implements Mapper<CustomerDbEntity, CustomerEntity> 
                 .surname(customerDbEntity.getSurname())
                 .createdBy(customerDbEntity.getCreatedBy())
                 .lastUpdateBy(customerDbEntity.getLastUpdateBy())
+                .imageUrl(customerDbEntity.getImageUrl())
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class CustomerMapper implements Mapper<CustomerDbEntity, CustomerEntity> 
                 .surname(customerEntity.getSurname())
                 .createdBy(customerEntity.getCreatedBy())
                 .lastUpdateBy(customerEntity.getLastUpdateBy())
+                .imageUrl(customerEntity.getImageUrl())
                 .build();
     }
 }

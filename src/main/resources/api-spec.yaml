@@ -182,6 +182,9 @@ components:
                     type: string
                 createdBy:
                     type: string
+                imageUrl:
+                    description: ''
+                    type: string
             example:
                 id: dummyId
                 name: dummyName

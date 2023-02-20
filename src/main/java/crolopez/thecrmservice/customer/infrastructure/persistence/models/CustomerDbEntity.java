@@ -30,5 +30,8 @@ public class CustomerDbEntity {
     @Column(name="LAST_UPDATED_BY", nullable=true)
     private String lastUpdateBy;
 
+    @Column(name="IMAGE_URL", nullable=true)
+    private String imageUrl;
+
     public CustomerDbEntity() {}
 }
