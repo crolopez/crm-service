@@ -103,6 +103,25 @@ paths:
                     description: OK
             operationId: createUser
             summary: Create user
+    '/v1/user/{id}':
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                    description: OK
+            operationId: getUser
+            summary: Get user
+        parameters:
+            -
+                name: id
+                description: User ID
+                schema:
+                    type: string
+                in: path
+                required: true
 components:
     schemas:
         CustomerList:

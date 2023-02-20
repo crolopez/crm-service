@@ -35,4 +35,10 @@ public class UserServiceImpl implements UserService{
         userEntity = userEntityRepository.create(userEntity);
         return userResponseFactory.create(userEntity);
     }
+
+    @Override
+    public UserDto getUser(String id) {
+        UserEntity userEntity = userEntityRepository.get(id);
+        return userResponseFactory.create(userEntity);
+    }
 }
