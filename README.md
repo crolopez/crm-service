@@ -45,3 +45,11 @@ docker run -p 8080:8080 --env DATASOURCE="<DATASOURCE>" --env DB_USERNAME="<DB_U
 In [this file](./.github/workflows/cicd.yml) you can find an example of how to deploy this application in a dockerized environment on AWS. 
 
 The recipe shows the steps to run the corresponding CI/CD, and you would only need to configure the secrets based on your personal AWS and Amazon ECS credentials.
+
+## TODO
+
+- Admin endpoints
+- Allow to save customer photos
+- Improve test coverage
+- Implement basic security measures
+- Improve error presentation

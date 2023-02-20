@@ -1,7 +1,7 @@
-package unit.crolopez.thecrmservice.customer.infrastructure.controllers;
+package unit.crolopez.thecrmservice.shared.infrastructure.controllers;
 
 import crolopez.thecrmservice.customer.application.services.CustomerService;
-import crolopez.thecrmservice.customer.infrastructure.controllers.V1ApiDelegateImpl;
+import crolopez.thecrmservice.shared.infrastructure.controllers.V1ApiDelegateImpl;
 import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

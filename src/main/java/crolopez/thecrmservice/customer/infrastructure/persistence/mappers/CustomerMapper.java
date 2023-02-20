@@ -2,7 +2,7 @@ package crolopez.thecrmservice.customer.infrastructure.persistence.mappers;
 
 import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.shared.infrastructure.persistence.mappers.Mapper;
-import crolopez.thecrmservice.shared.infrastructure.persistence.models.CustomerDbEntity;
+import crolopez.thecrmservice.customer.infrastructure.persistence.models.CustomerDbEntity;
 import org.springframework.stereotype.Component;
 
 @Component

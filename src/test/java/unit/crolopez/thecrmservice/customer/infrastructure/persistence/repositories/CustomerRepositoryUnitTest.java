@@ -3,7 +3,7 @@ package unit.crolopez.thecrmservice.customer.infrastructure.persistence.reposito
 import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.customer.infrastructure.persistence.repositories.CustomerRepository;
 import crolopez.thecrmservice.shared.infrastructure.persistence.mappers.Mapper;
-import crolopez.thecrmservice.shared.infrastructure.persistence.models.CustomerDbEntity;
+import crolopez.thecrmservice.customer.infrastructure.persistence.models.CustomerDbEntity;
 import crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit.UnitOfWork;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

@@ -76,6 +76,17 @@ paths:
                     type: string
                 in: path
                 required: true
+    /v1/user:
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/UserList'
+                    description: OK
+            operationId: getUsers
+            summary: Get users
 components:
     schemas:
         CustomerList:
@@ -116,6 +127,31 @@ components:
                 surname: dummySurname
                 lastUpdateBy: fakeDate
                 createdBy: fakeUser
+        User:
+            title: Root Type for User
+            description: ''
+            required:
+                - id
+                - isAdmin
+            type: object
+            properties:
+                id:
+                    type: string
+                isAdmin:
+                    type: boolean
+            example:
+                id: fakeId
+                isAdmin: false
+        UserList:
+            title: Root Type for UserList
+            description: ''
+            type: array
+            items:
+                $ref: '#/components/schemas/User'
+            example:
+                -
+                    id: fakeId
+                    isAdmin: false
 tags:
     -
         name: CRMApi

@@ -1,4 +1,4 @@
-package crolopez.thecrmservice.shared.infrastructure.persistence.models;
+package crolopez.thecrmservice.customer.infrastructure.persistence.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

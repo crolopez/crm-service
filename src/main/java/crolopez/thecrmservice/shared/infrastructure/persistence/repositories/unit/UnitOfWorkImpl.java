@@ -1,6 +1,5 @@
 package crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
 
-import crolopez.thecrmservice.shared.infrastructure.persistence.models.CustomerDbEntity;
 import lombok.SneakyThrows;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
