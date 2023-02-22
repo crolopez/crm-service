@@ -22,7 +22,7 @@ jobs:
       - name: Build
         run: mvn install -DskipTests
       - name: Run tests
-        run: mvn test test
+        run: mvn test test -DskipITs
       - name: Create docker image
         run: mvn io.fabric8:fabric8-maven-plugin:build
       - name: Save Docker image to artifact

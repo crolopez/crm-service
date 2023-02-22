@@ -1,27 +1,36 @@
 package crolopez.thecrmservice.shared.infrastructure.controllers;
 
-import crolopez.thecrmservice.api.ApiUtil;
-import crolopez.thecrmservice.api.V1ApiDelegate;
 import crolopez.thecrmservice.customer.application.services.CustomerService;
+import crolopez.thecrmservice.login.infrastructure.services.LoginService;
 import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
 import crolopez.thecrmservice.shared.domain.dtos.UserDto;
+import crolopez.thecrmservice.shared.infrastructure.api.V1Api;
+import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
 import crolopez.thecrmservice.user.application.services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.net.URI;
 import java.util.List;
 
 @Component
 public class V1ApiDelegateImpl implements V1ApiDelegate {
+
+    Logger logger = LoggerFactory.getLogger(V1ApiDelegateImpl.class);
 
     @Autowired
     private CustomerService customerService;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LoginService loginService;
 
     @Override
     public ResponseEntity<List<CustomerDto>> getCustomers() {
@@ -71,6 +80,33 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
     @Override
     public ResponseEntity<UserDto> updateUser(String id, UserDto userDto) {
         return ResponseEntity.ok().body(userService.updateUser(id, userDto));
+    }
+
+    @Override
+    public ResponseEntity<String> githubAuthorize(String code,
+                                                  String state,
+                                                  String responseType,
+                                                  String clientId,
+                                                  String scope,
+                                                  String redirectUri)  {
+        logger.info("~~~~githubAuthorize");
+        String accessToken = loginService.getAccessToken(code, state) ;
+
+        if (accessToken != null) {
+            HttpHeaders responseHeaders = new HttpHeaders();
+            responseHeaders.set("Authorization", "Bearer " + accessToken);
+            return new ResponseEntity<>("Authorized", responseHeaders, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+        }
+    }
+
+    @Override
+    public ResponseEntity<String> githubLogin(String scope) {
+        logger.info("~~~~githubLogin");
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(URI.create(loginService.login(scope)));
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 
 }

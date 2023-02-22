@@ -13,6 +13,11 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/CustomerList'
                     description: OK
+            security:
+                -
+                    TheCRMServiceSecurityScheme:
+                        - user
+                        - admin
             operationId: getCustomers
             summary: Get all customer
         post:
@@ -40,6 +45,11 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Customer'
                     description: OK
+            security:
+                -
+                    TheCRMServiceSecurityScheme:
+                        - user
+                        - admin
             operationId: getCustomer
             summary: Get customer
         put:
@@ -85,6 +95,10 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/UserList'
                     description: OK
+            security:
+                -
+                    TheCRMServiceSecurityScheme:
+                        - admin
             operationId: getUsers
             summary: Get users
         post:
@@ -112,6 +126,10 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/User'
                     description: OK
+            security:
+                -
+                    TheCRMServiceSecurityScheme:
+                        - admin
             operationId: getUser
             summary: Get user
         put:
@@ -147,6 +165,86 @@ paths:
                 schema:
                     type: string
                 in: path
+                required: true
+    /v1/login/oauth2/github/authorize:
+        get:
+            responses:
+                '200':
+                    content:
+                        text/xml:
+                            schema:
+                                type: string
+                    description: OK
+            operationId: githubAuthorize
+            summary: Authorize an user using Github OAuth2
+        parameters:
+            -
+                name: code
+                description: ''
+                schema:
+                    type: string
+                in: query
+                required: false
+            -
+                name: state
+                description: ''
+                schema:
+                    type: string
+                in: query
+                required: false
+            -
+                name: response_type
+                description: ''
+                schema:
+                    type: string
+                in: query
+            -
+                name: client_id
+                description: ''
+                schema:
+                    type: string
+                in: query
+                required: false
+            -
+                name: scope
+                description: ''
+                schema:
+                    type: string
+                in: query
+            -
+                name: redirect_uri
+                description: ''
+                schema:
+                    type: string
+                in: query
+                required: false
+    /v1/login/oauth2/github:
+        get:
+            responses:
+                '200':
+                    content:
+                        text/xml:
+                            schema:
+                                type: string
+                    description: OK
+                '302':
+                    content:
+                        text/xml:
+                            schema:
+                                type: string
+                    description: Redirect page
+            operationId: githubLogin
+            summary: Redirect user to Github's authentication server
+        parameters:
+            -
+                name: scope
+                description: ''
+                schema:
+                    enum:
+                        - user
+                        - admin
+                    type: string
+                in: query
                 required: true
 components:
     schemas:
@@ -216,6 +314,22 @@ components:
                 -
                     id: fakeId
                     isAdmin: false
+    securitySchemes:
+        TheCRMServiceSecurityScheme:
+            flows:
+                authorizationCode:
+                    authorizationUrl: 'https://d00b-185-237-136-194.eu.ngrok.io/api/login/oauth2/authorize/github'
+                    tokenUrl: 'https://d00b-185-237-136-194.eu.ngrok.io/api/oauth2/token/github'
+                    refreshUrl: 'https://d00b-185-237-136-194.eu.ngrok.io/api/oauth2/refresh/github'
+                    scopes:
+                        user: ''
+                        admin: ''
+            type: oauth2
+security:
+    -
+        TheCRMServiceSecurityScheme:
+            - user
+            - admin
 tags:
     -
         name: CRMApi
