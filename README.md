@@ -49,9 +49,20 @@ In [this file](./.github/workflows/cicd.yml) you can find an example of how to d
 
 The recipe shows the steps to run the corresponding CI/CD, and you would only need to configure the secrets based on your personal AWS and Amazon ECS credentials.
 
+## How to use 
+
+This API uses OAuth2 with Github as authentication provider. Therefore, before using it you must access this endpoint:
+
+``` bash
+http://localhost:8080/v1/login/oauth2/github?scope=user # Use admin/user according to the target role
+```
+
+This will take you to an authentication screen where you can enter your Github credentials. 
+
+After that, a response will be returned to you, in whose headers you can find the bearer token to use in the API.
+
 ## TODO
 
-- Role authentication
 - Improve test coverage
-- Implement basic security measures
+- Implement basic security measures (input validation)
 - Improve error presentation
