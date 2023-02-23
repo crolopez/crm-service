@@ -40,8 +40,16 @@ If you want to build the application in a dockerized environment:
 ```bash
 mvn clean install
 mvn io.fabric8:fabric8-maven-plugin:build
-docker run -p 8080:8080 --env DATASOURCE="<DATASOURCE>" --env DB_USERNAME="<DB_USERNAME>" --env DB_PASSWORD="<DB_PASSWORD>" the-crm-service
+docker run -p 8080:8080 \
+  --env DATASOURCE="<DATASOURCE>" \
+  --env DB_USERNAME="<DB_USERNAME>" \
+  --env DB_PASSWORD="<DB_PASSWORD>" \
+  --env OAUTH2_CLIENT_ID="<OAUTH2_CLIENT_ID>" \
+  --env OAUTH2_CLIENT_SECRET="<OAUTH2_CLIENT_SECRET>" \
+  the-crm-service
 ```
+
+You can see a complete example of how to configure and run the API in a local environment [here](./.github/docs/EXAMPLE.md).
 
 ## How to deploy
 
