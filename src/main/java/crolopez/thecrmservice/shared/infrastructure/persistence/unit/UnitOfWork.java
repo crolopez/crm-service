@@ -12,4 +12,5 @@ public interface UnitOfWork {
     <Entity> void delete(String id, Class<Entity> entityType);
 
     <Entity> void update(String id, Entity entity, Class<Entity> entityType);
-}
+
+    <Entity> Long count(Class<Entity> entityType);}

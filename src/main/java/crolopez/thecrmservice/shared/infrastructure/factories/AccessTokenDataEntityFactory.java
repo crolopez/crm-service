@@ -1,7 +1,7 @@
 package crolopez.thecrmservice.shared.infrastructure.factories;
 
 import crolopez.thecrmservice.shared.infrastructure.entities.AccessTokenDataEntity;
-import crolopez.thecrmservice.shared.infrastructure.entities.AccessTokenDataResponseDto;
+import crolopez.thecrmservice.shared.infrastructure.entities.dto.AccessTokenDataResponseDto;
 import org.springframework.http.ResponseEntity;
 
 public interface AccessTokenDataEntityFactory {

@@ -83,6 +83,21 @@ public class UnitOfWorkImpl implements UnitOfWork {
         prepareTransaction();
     }
 
+    @Override
+    @Transactional
+    public <Entity> Long count(Class<Entity> entityType) {
+        prepareTransaction();
+        Session session = sessionFactory.getCurrentSession();
+
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaQuery<Long> criteria = criteriaBuilder.createQuery(Long.class);
+        Root<Entity> root = criteria.from(entityType);
+
+        criteria.select(criteriaBuilder.count(root));
+
+        return session.createQuery(criteria).getSingleResult();
+    }
+
     private void prepareTransaction() {
         if (!sessionFactory.getCurrentSession().getTransaction().isActive())
             sessionFactory.getCurrentSession().beginTransaction();

@@ -235,17 +235,6 @@ paths:
                     description: Redirect page
             operationId: githubLogin
             summary: Redirect user to Github's authentication server
-        parameters:
-            -
-                name: scope
-                description: ''
-                schema:
-                    enum:
-                        - user
-                        - admin
-                    type: string
-                in: query
-                required: true
 components:
     schemas:
         CustomerList:

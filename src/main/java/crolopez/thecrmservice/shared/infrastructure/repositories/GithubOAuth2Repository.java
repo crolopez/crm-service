@@ -1,6 +1,9 @@
 package crolopez.thecrmservice.shared.infrastructure.repositories;
 
 import crolopez.thecrmservice.shared.infrastructure.entities.*;
+import crolopez.thecrmservice.shared.infrastructure.entities.dto.AccessTokenDataResponseDto;
+import crolopez.thecrmservice.shared.infrastructure.entities.dto.AccessTokenRequestDto;
+import crolopez.thecrmservice.shared.infrastructure.entities.dto.AuthUserResponseDto;
 import crolopez.thecrmservice.shared.infrastructure.factories.AccessTokenDataEntityFactory;
 import crolopez.thecrmservice.shared.infrastructure.factories.AuthenticatedUserDataEntityFactory;
 import org.springframework.beans.factory.annotation.Autowired;

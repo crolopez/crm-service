@@ -1,4 +1,4 @@
-package crolopez.thecrmservice.shared.infrastructure.entities;
+package crolopez.thecrmservice.shared.infrastructure.entities.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

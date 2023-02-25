@@ -66,6 +66,7 @@ docker run -p 8080:8080 \
     --env DB_USERNAME="postgres" --env DB_PASSWORD="docker"  \
     --env OAUTH2_CLIENT_ID="<OAUTH2_CLIENT_ID>"  \
     --env OAUTH2_CLIENT_SECRET="<OAUTH2_CLIENT_ID>" \
+    --env FIRST_USER_IS_ADMIN=true \
     the-crm-service
 ```
 
@@ -74,7 +75,7 @@ The variables `<OAUTH2_CLIENT_ID>` and `<OAUTH2_CLIENT_ID>` are extracted from [
 ## Login into the application
 
 If your application for interacting with APIs supports multiple redirects to web sites, launch a GET request to the following endpoint:
-http://localhost:8080/v1/login/oauth2/github?scope=user
+http://localhost:8080/v1/login/oauth2/github
 
 If it is not possible, just open it from the browser.
 

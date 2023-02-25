@@ -1,9 +1,9 @@
 package crolopez.thecrmservice.shared.infrastructure.controllers;
 
 import crolopez.thecrmservice.customer.application.services.CustomerService;
-import crolopez.thecrmservice.login.infrastructure.services.LoginService;
-import crolopez.thecrmservice.shared.entities.CustomerDto;
-import crolopez.thecrmservice.shared.entities.UserDto;
+import crolopez.thecrmservice.login.application.services.LoginService;
+import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.entities.dto.UserDto;
 import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
 import crolopez.thecrmservice.user.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,9 +96,9 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> githubLogin(String scope) {
+    public ResponseEntity<String> githubLogin() {
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(loginService.getLoginUrl(scope)));
+        headers.setLocation(URI.create(loginService.getLoginUrl()));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 

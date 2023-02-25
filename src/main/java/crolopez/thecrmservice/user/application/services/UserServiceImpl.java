@@ -1,7 +1,7 @@
 package crolopez.thecrmservice.user.application.services;
 
 import crolopez.thecrmservice.shared.application.repositories.PersistenceRepository;
-import crolopez.thecrmservice.shared.entities.UserDto;
+import crolopez.thecrmservice.shared.entities.dto.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import crolopez.thecrmservice.user.domain.factories.UserEntityFactory;
 import crolopez.thecrmservice.user.domain.factories.UserResponseFactory;

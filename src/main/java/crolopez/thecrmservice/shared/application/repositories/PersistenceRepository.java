@@ -8,4 +8,5 @@ public interface PersistenceRepository<Entity> {
     Entity create(Entity customerEntity);
     void delete(String id);
     Entity update(String id, Entity customerEntity);
+    Long count();
 }

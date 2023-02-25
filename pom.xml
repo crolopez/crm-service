@@ -29,6 +29,11 @@
             <version>${spring.boot.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
             <version>${spring.boot.version}</version>
@@ -272,7 +277,7 @@
                             </inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>crolopez.thecrmservice.shared.infrastructure.api</apiPackage>
-                            <modelPackage>crolopez.thecrmservice.shared.entities</modelPackage>
+                            <modelPackage>crolopez.thecrmservice.shared.entities.dto</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <configOptions>

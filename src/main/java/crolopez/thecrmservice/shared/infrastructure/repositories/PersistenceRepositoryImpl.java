@@ -6,6 +6,7 @@ import crolopez.thecrmservice.shared.infrastructure.persistence.unit.UnitOfWork;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,7 +22,11 @@ abstract public class PersistenceRepositoryImpl<PersistentEntity, Entity> implem
 
     @Override
     public Entity get(String id) {
-        return get("id", id).get(0);
+        try {
+            return get("id", id).get(0);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            throw new EntityNotFoundException();
+        }
     }
 
     @Override
@@ -47,6 +52,11 @@ abstract public class PersistenceRepositoryImpl<PersistentEntity, Entity> implem
         PersistentEntity persistentEntity = mapper.entityToExternalEntity(customerEntity);
         unitOfWork.update(id, persistentEntity, persistentEntityClass);
         return customerEntity;
+    }
+
+    @Override
+    public Long count() {
+        return unitOfWork.count(persistentEntityClass);
     }
 
     protected <FilterType> List<Entity> get(String field, FilterType filterValue) {

@@ -1,7 +1,9 @@
 package crolopez.thecrmservice.shared.infrastructure.configuration.auth;
 
-import crolopez.thecrmservice.shared.infrastructure.entities.AuthenticatedUserDataEntity;
-import crolopez.thecrmservice.shared.infrastructure.repositories.OAuth2Repository;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.jayway.jsonpath.spi.cache.Cache;
+import crolopez.thecrmservice.login.application.services.LoginService;
+import crolopez.thecrmservice.login.domain.entities.AuthenticatedUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,18 +18,18 @@ import java.util.*;
 public class OpaqueTokenIntrospectorImpl implements OpaqueTokenIntrospector {
 
     @Autowired
-    OAuth2Repository oAuth2Repository;
+    AuthenticatedUserCache cache;
 
     @Override
     public OAuth2AuthenticatedPrincipal introspect(String token) {
-        AuthenticatedUserDataEntity userData = oAuth2Repository.getAuthenticatedUserData(token);
+        AuthenticatedUserEntity user = cache.getAuthenticatedUser(token);
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + userData.getScope()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 
         DefaultOAuth2AuthenticatedPrincipal principal = new DefaultOAuth2AuthenticatedPrincipal(
-                "username",
-                Collections.singletonMap("username", userData.getUsername()),
+                "userId",
+                Collections.singletonMap("userId", user.getRole()),
                 authorities
         );
 

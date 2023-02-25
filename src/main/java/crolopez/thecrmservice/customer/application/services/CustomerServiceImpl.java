@@ -4,7 +4,7 @@ import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.customer.domain.factories.CustomerEntityFactory;
 import crolopez.thecrmservice.customer.domain.factories.CustomerResponseFactory;
 import crolopez.thecrmservice.shared.application.repositories.PersistenceRepository;
-import crolopez.thecrmservice.shared.entities.CustomerDto;
+import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
