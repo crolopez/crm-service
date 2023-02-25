@@ -1,12 +1,10 @@
-package crolopez.thecrmservice.customer.infrastructure.persistence.models;
+package crolopez.thecrmservice.customer.infrastructure.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.UUID;
 
 @Entity(name = "CUSTOMER")
 @Getter

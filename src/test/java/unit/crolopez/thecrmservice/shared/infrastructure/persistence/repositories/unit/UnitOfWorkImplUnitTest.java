@@ -1,6 +1,6 @@
 package unit.crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
 
-import crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit.UnitOfWorkImpl;
+import crolopez.thecrmservice.shared.infrastructure.persistence.unit.UnitOfWorkImpl;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

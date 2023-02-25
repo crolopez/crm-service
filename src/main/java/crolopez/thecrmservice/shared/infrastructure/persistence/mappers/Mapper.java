@@ -1,6 +1,6 @@
 package crolopez.thecrmservice.shared.infrastructure.persistence.mappers;
 
-public interface Mapper<DbEntity, Entity> {
-    Entity dbEntityToEntity(DbEntity dbEntity);
-    DbEntity entityToDbEntity(Entity entity);
+public interface Mapper<ExternalEntity, Entity> {
+    Entity externalEntityToEntity(ExternalEntity externalEntity);
+    ExternalEntity entityToExternalEntity(Entity entity);
 }

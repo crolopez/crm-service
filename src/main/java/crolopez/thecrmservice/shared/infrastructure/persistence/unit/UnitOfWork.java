@@ -1,4 +1,4 @@
-package crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
+package crolopez.thecrmservice.shared.infrastructure.persistence.unit;
 
 import java.util.List;
 
@@ -7,9 +7,9 @@ public interface UnitOfWork {
 
     <Entity> List<Entity> get(Class<Entity> entityType);
 
-    <Entity> void create(Entity dbEntityClass);
+    <Entity> void create(Entity entityClass);
 
     <Entity> void delete(String id, Class<Entity> entityType);
 
-    <Entity> void update(String id, Entity dbEntity, Class<Entity> entityType);
+    <Entity> void update(String id, Entity entity, Class<Entity> entityType);
 }

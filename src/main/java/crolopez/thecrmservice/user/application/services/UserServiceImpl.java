@@ -1,7 +1,7 @@
 package crolopez.thecrmservice.user.application.services;
 
-import crolopez.thecrmservice.shared.application.repositories.Repository;
-import crolopez.thecrmservice.shared.domain.dtos.UserDto;
+import crolopez.thecrmservice.shared.application.repositories.PersistenceRepository;
+import crolopez.thecrmservice.shared.entities.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import crolopez.thecrmservice.user.domain.factories.UserEntityFactory;
 import crolopez.thecrmservice.user.domain.factories.UserResponseFactory;
@@ -14,7 +14,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private Repository<UserEntity> userEntityRepository;
+    private PersistenceRepository<UserEntity> userEntityRepository;
 
     @Autowired
     private UserResponseFactory userResponseFactory;

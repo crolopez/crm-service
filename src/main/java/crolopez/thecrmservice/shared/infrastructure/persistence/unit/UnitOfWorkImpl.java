@@ -1,4 +1,4 @@
-package crolopez.thecrmservice.shared.infrastructure.persistence.repositories.unit;
+package crolopez.thecrmservice.shared.infrastructure.persistence.unit;
 
 import lombok.SneakyThrows;
 import org.hibernate.Session;
@@ -42,9 +42,9 @@ public class UnitOfWorkImpl implements UnitOfWork {
 
     @Transactional
     @Override
-    public <DbEntity> void create(DbEntity dbEntity) {
+    public <Entity> void create(Entity entityClass) {
         prepareTransaction();
-        sessionFactory.getCurrentSession().save(dbEntity);
+        sessionFactory.getCurrentSession().save(entityClass);
         sessionFactory.getCurrentSession().getTransaction().commit();
         prepareTransaction();
     }
@@ -62,7 +62,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
     @SneakyThrows
     @Transactional
     @Override
-    public <Entity> void update(String id, Entity dbEntity, Class<Entity> entityType) {
+    public <Entity> void update(String id, Entity entity, Class<Entity> entityType) {
         prepareTransaction();
         Session session = sessionFactory.getCurrentSession();
 
@@ -73,7 +73,7 @@ public class UnitOfWorkImpl implements UnitOfWork {
         Field[] fields = entityType.getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
-            Object value = field.get(dbEntity);
+            Object value = field.get(entity);
             criteria.set(root.get(field.getName()), criteriaBuilder.literal(value));
         }
 

@@ -2,13 +2,10 @@ package crolopez.thecrmservice.shared.infrastructure.controllers;
 
 import crolopez.thecrmservice.customer.application.services.CustomerService;
 import crolopez.thecrmservice.login.infrastructure.services.LoginService;
-import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
-import crolopez.thecrmservice.shared.domain.dtos.UserDto;
-import crolopez.thecrmservice.shared.infrastructure.api.V1Api;
+import crolopez.thecrmservice.shared.entities.CustomerDto;
+import crolopez.thecrmservice.shared.entities.UserDto;
 import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
 import crolopez.thecrmservice.user.application.services.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,8 +17,6 @@ import java.util.List;
 
 @Component
 public class V1ApiDelegateImpl implements V1ApiDelegate {
-
-    Logger logger = LoggerFactory.getLogger(V1ApiDelegateImpl.class);
 
     @Autowired
     private CustomerService customerService;
@@ -89,7 +84,6 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
                                                   String clientId,
                                                   String scope,
                                                   String redirectUri)  {
-        logger.info("~~~~githubAuthorize");
         String accessToken = loginService.getAccessToken(code, state) ;
 
         if (accessToken != null) {
@@ -103,9 +97,8 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
 
     @Override
     public ResponseEntity<String> githubLogin(String scope) {
-        logger.info("~~~~githubLogin");
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create(loginService.login(scope)));
+        headers.setLocation(URI.create(loginService.getLoginUrl(scope)));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 

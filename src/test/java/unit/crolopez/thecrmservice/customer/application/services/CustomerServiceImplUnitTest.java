@@ -3,8 +3,8 @@ package unit.crolopez.thecrmservice.customer.application.services;
 import crolopez.thecrmservice.customer.application.services.CustomerServiceImpl;
 import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.customer.domain.factories.CustomerResponseFactory;
-import crolopez.thecrmservice.customer.infrastructure.persistence.repositories.CustomerRepository;
-import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
+import crolopez.thecrmservice.customer.infrastructure.repositories.CustomerRepository;
+import crolopez.thecrmservice.shared.entities.CustomerDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;

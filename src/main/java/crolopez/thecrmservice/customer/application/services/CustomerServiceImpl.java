@@ -3,8 +3,8 @@ package crolopez.thecrmservice.customer.application.services;
 import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.customer.domain.factories.CustomerEntityFactory;
 import crolopez.thecrmservice.customer.domain.factories.CustomerResponseFactory;
-import crolopez.thecrmservice.shared.application.repositories.Repository;
-import crolopez.thecrmservice.shared.domain.dtos.CustomerDto;
+import crolopez.thecrmservice.shared.application.repositories.PersistenceRepository;
+import crolopez.thecrmservice.shared.entities.CustomerDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService{
 
     @Autowired
-    private Repository<CustomerEntity> customerEntityRepository;
+    private PersistenceRepository<CustomerEntity> customerEntityRepository;
 
     @Autowired
     private CustomerResponseFactory customerResponseFactory;
