@@ -3,6 +3,7 @@ package crolopez.thecrmservice.shared.infrastructure.controllers;
 import crolopez.thecrmservice.customer.application.services.CustomerService;
 import crolopez.thecrmservice.login.application.services.LoginService;
 import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.GenericResponseDto;
 import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
 import crolopez.thecrmservice.shared.infrastructure.auth.AuthenticatedUserCache;
@@ -91,20 +92,20 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
     }
 
     @Override
-    public ResponseEntity<String> githubAuthorize(String code,
-                                                  String state,
-                                                  String responseType,
-                                                  String clientId,
-                                                  String scope,
-                                                  String redirectUri)  {
+    public ResponseEntity<GenericResponseDto> githubAuthorize(String code,
+                                                              String state,
+                                                              String responseType,
+                                                              String clientId,
+                                                              String scope,
+                                                              String redirectUri)  {
         String accessToken = loginService.getAccessToken(code, state) ;
 
         if (accessToken != null) {
             HttpHeaders responseHeaders = new HttpHeaders();
             responseHeaders.set("Authorization", "Bearer " + accessToken);
-            return new ResponseEntity<>("Authorized", responseHeaders, HttpStatus.OK);
+            return new ResponseEntity<>(new GenericResponseDto().message("Authorized"), responseHeaders, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("Unauthorized", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new GenericResponseDto().message("Unauthorized"), HttpStatus.UNAUTHORIZED);
         }
     }
 

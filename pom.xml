@@ -12,6 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <validation.provider>org.hibernate.validator.HibernateValidator</validation.provider>
         <spring.boot.version>2.7.0</spring.boot.version>
         <spring.version>5.3.24</spring.version>
         <spring-security.version>5.7.3</spring-security.version>
@@ -22,6 +23,11 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.0.Final</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -219,6 +225,11 @@
             <version>1.6.5</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.12</version>
@@ -285,6 +296,7 @@
                                 <dateLibrary>java17</dateLibrary>
                                 <sourceFolder>src/main/java</sourceFolder>
                                 <delegatePattern>true</delegatePattern>
+                                <useBeanValidation>true</useBeanValidation>
                             </configOptions>
                         </configuration>
                     </execution>

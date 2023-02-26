@@ -36,7 +36,7 @@ public class AuthenticatedUserCacheImpl implements AuthenticatedUserCache {
     }
 
     private UserDto addAuthenticatedUserToCache(String token) {
-            AuthenticatedUserDataEntity userData = oAuth2Repository.getAuthenticatedUserData(token);
-            return userService.getUser(userData.getId());
+        AuthenticatedUserDataEntity userData = oAuth2Repository.getAuthenticatedUserData(token);
+        return userService.getUser(userData.getId());
     }
 }

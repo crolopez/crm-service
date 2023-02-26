@@ -171,9 +171,9 @@ paths:
             responses:
                 '200':
                     content:
-                        text/xml:
+                        application/json:
                             schema:
-                                type: string
+                                $ref: '#/components/schemas/GenericResponse'
                     description: OK
             operationId: githubAuthorize
             summary: Authorize an user using Github OAuth2
@@ -312,6 +312,37 @@ components:
                 -
                     id: fakeId
                     isAdmin: false
+        GenericResponse:
+            title: Root Type for GenericResponse
+            description: ''
+            required:
+                - message
+            type: object
+            properties:
+                message:
+                    type: string
+                errors:
+                    description: ''
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/Error'
+            example:
+                message: Fake message
+        Error:
+            title: Root Type for Error
+            description: ''
+            required:
+                - error
+                - field
+            type: object
+            properties:
+                field:
+                    type: string
+                error:
+                    type: string
+            example:
+                field: FakeField
+                error: FakeError
     securitySchemes:
         TheCRMServiceSecurityScheme:
             flows:
