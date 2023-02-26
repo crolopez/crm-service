@@ -7,11 +7,13 @@ import crolopez.thecrmservice.customer.domain.factories.CustomerResponseFactory;
 import crolopez.thecrmservice.customer.infrastructure.repositories.CustomerRepository;
 import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
