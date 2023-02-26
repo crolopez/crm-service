@@ -1,7 +1,6 @@
-package crolopez.thecrmservice.shared.infrastructure.configuration.auth;
+package crolopez.thecrmservice.shared.infrastructure.auth;
 
 import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
-import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

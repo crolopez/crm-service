@@ -5,18 +5,29 @@ import crolopez.thecrmservice.login.application.services.LoginService;
 import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
+import crolopez.thecrmservice.shared.infrastructure.auth.AuthenticatedUserCache;
 import crolopez.thecrmservice.user.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.URI;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Component
 public class V1ApiDelegateImpl implements V1ApiDelegate {
+
+    private final Pattern BEARER_PATTERN = Pattern.compile("Bearer\\s+(.*)$");
+
+    @Autowired
+    private AuthenticatedUserCache cache;
 
     @Autowired
     private CustomerService customerService;
@@ -34,7 +45,8 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
 
     @Override
     public ResponseEntity<CustomerDto> createCustomer(CustomerDto customerDto) {
-        return ResponseEntity.ok().body(customerService.createCustomer(customerDto));
+        String loggedUserId = getLoggedUserId();
+        return ResponseEntity.ok().body(customerService.createCustomer(customerDto, loggedUserId));
     }
 
     @Override
@@ -49,7 +61,8 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
 
     @Override
     public ResponseEntity<CustomerDto> updateCustomer(String id, CustomerDto customerDto) {
-        return ResponseEntity.ok().body(customerService.updateCustomer(id, customerDto));
+        String loggedUserId = getLoggedUserId();
+        return ResponseEntity.ok().body(customerService.updateCustomer(id, customerDto, loggedUserId));
     }
 
     @Override
@@ -100,6 +113,22 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(loginService.getLoginUrl()));
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
+    }
+
+    private String getLoggedUserId() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String authenticationHeader = request.getHeader("authorization");
+        String token = getTokenFromHeader(authenticationHeader);
+        UserDto user = cache.getAuthenticatedUser(token);
+        return user.getId();
+    }
+
+    private String getTokenFromHeader(String header) {
+        Matcher matcher = BEARER_PATTERN.matcher(header);
+        if (matcher.matches()) {
+            return matcher.group(1);
+        }
+        return "UNEXPECTED_ERROR";
     }
 
 }
