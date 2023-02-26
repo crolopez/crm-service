@@ -59,7 +59,7 @@ public class GithubOAuth2Repository implements OAuth2Repository {
                 .clientId(clientId)
                 .clientSecret(clientSecret)
                 .code(code)
-                .state(state)
+                .state(state) // Protect against cross-site request forgery attacks
                 .build();
 
         HttpEntity<AccessTokenRequestDto> requestEntity = new HttpEntity(accessTokenRequest, headers);
