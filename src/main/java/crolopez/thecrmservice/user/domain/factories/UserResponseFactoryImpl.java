@@ -12,7 +12,8 @@ public class UserResponseFactoryImpl implements UserResponseFactory {
     public List<UserDto> create(List<UserEntity> userEntities) {
         return userEntities.stream().map(x -> {
             var user = new UserDto();
-            user.setId(x.getId().toString());
+            user.setId(x.getId());
+            user.setName(x.getName());
             user.setRole(x.getRole());
             return user;
         }).toList();
@@ -22,6 +23,7 @@ public class UserResponseFactoryImpl implements UserResponseFactory {
     public UserDto create(UserEntity userEntity) {
         var user = new UserDto();
         user.setId(userEntity.getId());
+        user.setName(userEntity.getName());
         user.setRole(userEntity.getRole());
         return user;
     }

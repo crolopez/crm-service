@@ -7,6 +7,5 @@ import lombok.Getter;
 @Builder
 public class AuthenticatedUserDataEntity {
     String id;
-    String username;
-    String scope;
+    String name;
 }

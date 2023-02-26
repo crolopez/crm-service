@@ -10,9 +10,8 @@ public class AuthenticatedUserDataEntityFactoryImpl implements AuthenticatedUser
     @Override
     public AuthenticatedUserDataEntity create(ResponseEntity<AuthUserResponseDto> response) {
         return AuthenticatedUserDataEntity.builder()
-                .username(response.getBody().getLogin())
+                .name(response.getBody().getName())
                 .id(response.getBody().getId())
-                .scope(response.getHeaders().get("X-OAuth-Scopes").get(0).toUpperCase())
                 .build();
     }
 }

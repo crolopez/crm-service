@@ -284,6 +284,7 @@ components:
             required:
                 - id
                 - role
+                - name
             type: object
             properties:
                 id:
@@ -294,9 +295,13 @@ components:
                         - ADMIN
                         - USER
                     type: string
+                name:
+                    description: ''
+                    type: string
             example:
                 id: fakeId
                 role: ADMIN
+                name: Fake Name
         UserList:
             title: Root Type for UserList
             description: ''

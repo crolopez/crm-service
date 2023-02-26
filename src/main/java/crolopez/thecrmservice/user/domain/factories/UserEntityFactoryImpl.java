@@ -10,6 +10,7 @@ public class UserEntityFactoryImpl implements UserEntityFactory{
     public UserEntity create(UserDto userDto) {
         return UserEntity.builder()
                 .id(userDto.getId())
+                .name(userDto.getName())
                 .role(userDto.getRole())
                 .build();
     }

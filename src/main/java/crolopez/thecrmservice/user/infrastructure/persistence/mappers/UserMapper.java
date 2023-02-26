@@ -14,6 +14,7 @@ public class UserMapper implements Mapper<UserDbEntity, UserEntity> {
         return UserEntity.builder()
                 .id(userDbEntity.getId())
                 .role(RoleEnum.valueOf(userDbEntity.getRole()))
+                .name(userDbEntity.getName())
                 .build();
     }
 
@@ -22,6 +23,7 @@ public class UserMapper implements Mapper<UserDbEntity, UserEntity> {
         return UserDbEntity.builder()
                 .id(userEntity.getId())
                 .role(userEntity.getRole().toString())
+                .name(userEntity.getName())
                 .build();
     }
 }

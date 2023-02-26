@@ -21,5 +21,8 @@ public class UserDbEntity {
     @Column(name="ROLE", nullable=false)
     private String role;
 
+    @Column(name="NAME", nullable=false)
+    private String name;
+
     public UserDbEntity() {}
 }

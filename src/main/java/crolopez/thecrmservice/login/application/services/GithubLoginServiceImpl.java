@@ -5,7 +5,6 @@ import crolopez.thecrmservice.shared.infrastructure.entities.AccessTokenDataEnti
 import crolopez.thecrmservice.shared.infrastructure.entities.AuthenticatedUserDataEntity;
 import crolopez.thecrmservice.shared.infrastructure.repositories.OAuth2Repository;
 import crolopez.thecrmservice.user.application.services.UserService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -51,6 +50,7 @@ public class GithubLoginServiceImpl implements LoginService {
 
         AuthenticatedUserDataEntity userDataEntity = oAuth2Repository.getAuthenticatedUserData(accessToken);
         final String userId = userDataEntity.getId();
+        final String userName = userDataEntity.getName();
 
         try {
             UserDto user = userService.getUser(userId);
@@ -58,14 +58,15 @@ public class GithubLoginServiceImpl implements LoginService {
                     ? accessToken
                     : null;
         } catch (EntityNotFoundException ex) {
-            registerUser(userId);
+            registerUser(userId, userName);
             return accessToken;
         }
     }
 
-    private void registerUser(String userId) {
+    private void registerUser(String userId, String userName) {
         UserDto userDto = new UserDto();
         userDto.setId(userId);
+        userDto.setName(userName);
         userDto.setRole(firstUserIsAdmin && userService.countUsers() == 0
                             ? ADMIN
                             : USER);
