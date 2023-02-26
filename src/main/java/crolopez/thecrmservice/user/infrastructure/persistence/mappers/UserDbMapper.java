@@ -7,7 +7,7 @@ import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper implements Mapper<UserDbEntity, UserEntity> {
+public class UserDbMapper implements Mapper<UserDbEntity, UserEntity> {
 
     @Override
     public UserEntity externalEntityToEntity(UserDbEntity userDbEntity) {

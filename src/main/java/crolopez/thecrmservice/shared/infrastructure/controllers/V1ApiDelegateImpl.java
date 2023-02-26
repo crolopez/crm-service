@@ -137,7 +137,7 @@ public class V1ApiDelegateImpl implements V1ApiDelegate {
     public ResponseEntity<String> githubLogin() {
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(URI.create(loginService.getLoginUrl()));
-        log("Authentication link created.");
+        log.info("Authentication link created.");
         return new ResponseEntity<>(headers, HttpStatus.FOUND);
     }
 

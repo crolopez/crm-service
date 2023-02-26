@@ -30,8 +30,7 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public CustomerDto createCustomer(CustomerDto customerDto, String loggedUserId) {
-        CustomerEntity customerEntity = customerEntityFactory.create(customerDto);
-        customerEntity.setCreatedBy(loggedUserId);
+        CustomerEntity customerEntity = customerEntityFactory.create(customerDto, loggedUserId);
         customerEntity = customerEntityRepository.create(customerEntity);
         return customerResponseFactory.create(customerEntity);
     }
