@@ -69,18 +69,6 @@ public class V1ApiControllerExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private <T extends  Throwable> T getExceptionCause(Throwable ex, Class<T> exceptionCauseClass) {
-        final int MAX_DEEP = 5;
-        Throwable cause = ex.getCause();
-        for (int i = 0; i < MAX_DEEP; i++, cause = cause.getCause())
-            if (cause == null)
-                break;
-            else if (cause.getClass() == exceptionCauseClass)
-                return (T) cause;
-
-        return null;
-    }
-
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<GenericResponseDto> handleEntityNotFoundException(Exception ex) {
         log.error("Entity not found: {}", ex.getMessage());
@@ -93,5 +81,17 @@ public class V1ApiControllerExceptionHandler {
         log.error("Unexpected exception: {}", ex.getMessage());
         return new ResponseEntity(new GenericResponseDto().message(UNEXPECTED_ERROR_MESSAGE),
                 HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private <T extends  Throwable> T getExceptionCause(Throwable ex, Class<T> exceptionCauseClass) {
+        final int MAX_DEEP = 5;
+        Throwable cause = ex.getCause();
+        for (int i = 0; i < MAX_DEEP; i++, cause = cause.getCause())
+            if (cause == null)
+                break;
+            else if (cause.getClass() == exceptionCauseClass)
+                return (T) cause;
+
+        return null;
     }
 }

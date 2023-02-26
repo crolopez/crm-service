@@ -73,8 +73,9 @@ This will take you to an authentication screen where you can enter your Github c
 
 After that, a response will be returned to you, in whose headers you can find the bearer token to use in the API.
 
-## TODO
+## About the API
 
-- Improve test coverage
-- Implement basic security measures (input validation)
-- Improve error presentation
+- Any user with a Github account can login to the application adopting the `USER` role.
+- Any change in the role of a user will be reflected when refreshing cache (option `CACHE_EXPIRATION_TIME`).
+- If the `FIRST_USER_IS_ADMIN` option is enabled, the first user to log in will adopt the `ADMIN` role.
+- You can pre-register users using the endpoint for this, but their identifier must match the Github one (not username).
