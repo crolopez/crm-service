@@ -19,41 +19,41 @@ public class CustomerDbMapperUnitTest {
     @Test
     public void givenValidEntity_whenCallEntityToExternalEntity_thenTheExpectedResponseIsReturned() {
         CustomerEntity entity = CustomerEntity.builder()
-                .id("fakeId")
+                .id("fakeId?")
                 .createdBy("fakeCreatedBy")
-                .name("fakeName")
+                .name("fakeName)")
                 .surname("fakeSurname")
-                .imageUrl("fakeImageUrl")
+                .imageUrl("fakeImageUrl'")
                 .lastUpdateBy("fakeLastUpdateBy")
                 .build();
 
         CustomerDbEntity response = mapper.entityToExternalEntity(entity);
 
-        assertEquals("fakeId", response.getId());
+        assertEquals("fakeId\\?", response.getId());
         assertEquals("fakeCreatedBy", response.getCreatedBy());
-        assertEquals("fakeName", response.getName());
+        assertEquals("fakeName\\)", response.getName());
         assertEquals("fakeSurname", response.getSurname());
-        assertEquals("fakeImageUrl", response.getImageUrl());
+        assertEquals("fakeImageUrl\\'", response.getImageUrl());
         assertEquals("fakeLastUpdateBy", response.getLastUpdateBy());
     }
 
     @Test
     public void givenValidDbEntity_whenCallExternalEntityToEntity_thenTheExpectedResponseIsReturned() {
         CustomerDbEntity customerDbEntity = CustomerDbEntity.builder()
-            .id("fakeId")
+            .id("fakeId\\?")
             .createdBy("fakeCreatedBy")
-            .name("fakeName")
+            .name("fakeName\\)")
             .surname("fakeSurname")
-            .imageUrl("fakeImageUrl")
+            .imageUrl("fakeImageUrl\\'")
             .lastUpdateBy("fakeLastUpdateBy").build();
 
         CustomerEntity response = mapper.externalEntityToEntity(customerDbEntity);
 
-        assertEquals("fakeId", response.getId());
+        assertEquals("fakeId?", response.getId());
         assertEquals("fakeCreatedBy", response.getCreatedBy());
-        assertEquals("fakeName", response.getName());
+        assertEquals("fakeName)", response.getName());
         assertEquals("fakeSurname", response.getSurname());
-        assertEquals("fakeImageUrl", response.getImageUrl());
+        assertEquals("fakeImageUrl'", response.getImageUrl());
         assertEquals("fakeLastUpdateBy", response.getLastUpdateBy());
     }
 
