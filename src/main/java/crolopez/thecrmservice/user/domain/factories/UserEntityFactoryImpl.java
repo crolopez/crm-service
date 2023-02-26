@@ -1,6 +1,6 @@
 package crolopez.thecrmservice.user.domain.factories;
 
-import crolopez.thecrmservice.shared.entities.dto.UserDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ public class UserEntityFactoryImpl implements UserEntityFactory{
     public UserEntity create(UserDto userDto) {
         return UserEntity.builder()
                 .id(userDto.getId())
-                .isAdmin(userDto.getIsAdmin())
+                .role(userDto.getRole())
                 .build();
     }
 }

@@ -277,7 +277,7 @@
                             </inputSpec>
                             <generatorName>spring</generatorName>
                             <apiPackage>crolopez.thecrmservice.shared.infrastructure.api</apiPackage>
-                            <modelPackage>crolopez.thecrmservice.shared.entities.dto</modelPackage>
+                            <modelPackage>crolopez.thecrmservice.shared.domain.entities.dto</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
                             <modelNameSuffix>Dto</modelNameSuffix>
                             <configOptions>

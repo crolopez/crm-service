@@ -1,7 +1,8 @@
 package crolopez.thecrmservice.shared.infrastructure.configuration.auth;
 
-import crolopez.thecrmservice.login.domain.entities.AuthenticatedUserEntity;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
+import crolopez.thecrmservice.user.domain.entities.UserEntity;
 
 public interface AuthenticatedUserCache {
-    AuthenticatedUserEntity getAuthenticatedUser(String token);
+    UserDto getAuthenticatedUser(String token);
 }

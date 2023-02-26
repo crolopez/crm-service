@@ -18,8 +18,8 @@ public class UserDbEntity {
     @Column(name="ID", nullable=false, unique=true)
     private String id;
 
-    @Column(name="IS_ADMIN", nullable=false)
-    private Boolean isAdmin;
+    @Column(name="ROLE", nullable=false)
+    private String role;
 
     public UserDbEntity() {}
 }

@@ -67,6 +67,7 @@ docker run -p 8080:8080 \
     --env OAUTH2_CLIENT_ID="<OAUTH2_CLIENT_ID>"  \
     --env OAUTH2_CLIENT_SECRET="<OAUTH2_CLIENT_ID>" \
     --env FIRST_USER_IS_ADMIN=true \
+    --env CACHE_EXPIRATION_TIME=2 \
     the-crm-service
 ```
 

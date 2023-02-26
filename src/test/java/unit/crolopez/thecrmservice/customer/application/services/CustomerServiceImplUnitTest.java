@@ -4,7 +4,7 @@ import crolopez.thecrmservice.customer.application.services.CustomerServiceImpl;
 import crolopez.thecrmservice.customer.domain.entities.CustomerEntity;
 import crolopez.thecrmservice.customer.domain.factories.CustomerResponseFactory;
 import crolopez.thecrmservice.customer.infrastructure.repositories.CustomerRepository;
-import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

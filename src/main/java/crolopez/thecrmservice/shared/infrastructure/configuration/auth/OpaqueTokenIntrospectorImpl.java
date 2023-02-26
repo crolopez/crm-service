@@ -1,9 +1,7 @@
 package crolopez.thecrmservice.shared.infrastructure.configuration.auth;
 
-import com.github.benmanes.caffeine.cache.Caffeine;
-import com.jayway.jsonpath.spi.cache.Cache;
-import crolopez.thecrmservice.login.application.services.LoginService;
-import crolopez.thecrmservice.login.domain.entities.AuthenticatedUserEntity;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
+import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,7 +20,7 @@ public class OpaqueTokenIntrospectorImpl implements OpaqueTokenIntrospector {
 
     @Override
     public OAuth2AuthenticatedPrincipal introspect(String token) {
-        AuthenticatedUserEntity user = cache.getAuthenticatedUser(token);
+        UserDto user = cache.getAuthenticatedUser(token);
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));

@@ -2,7 +2,7 @@ package integration.crolopez.thecrmservice.customer.infrastructure.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crolopez.thecrmservice.Main;
-import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 import crolopez.thecrmservice.shared.infrastructure.configuration.HibernateConfiguration;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;

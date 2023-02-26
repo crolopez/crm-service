@@ -1,6 +1,6 @@
 package crolopez.thecrmservice.user.domain.factories;
 
-import crolopez.thecrmservice.shared.entities.dto.UserDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ public class UserResponseFactoryImpl implements UserResponseFactory {
         return userEntities.stream().map(x -> {
             var user = new UserDto();
             user.setId(x.getId().toString());
-            user.setIsAdmin(x.getIsAdmin());
+            user.setRole(x.getRole());
             return user;
         }).toList();
     }
@@ -22,7 +22,7 @@ public class UserResponseFactoryImpl implements UserResponseFactory {
     public UserDto create(UserEntity userEntity) {
         var user = new UserDto();
         user.setId(userEntity.getId());
-        user.setIsAdmin(userEntity.getIsAdmin());
+        user.setRole(userEntity.getRole());
         return user;
     }
 }

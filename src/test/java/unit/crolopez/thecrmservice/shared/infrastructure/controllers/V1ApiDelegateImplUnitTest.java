@@ -2,7 +2,7 @@ package unit.crolopez.thecrmservice.shared.infrastructure.controllers;
 
 import crolopez.thecrmservice.customer.application.services.CustomerService;
 import crolopez.thecrmservice.shared.infrastructure.controllers.V1ApiDelegateImpl;
-import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

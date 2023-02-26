@@ -283,16 +283,20 @@ components:
             description: ''
             required:
                 - id
-                - isAdmin
+                - role
             type: object
             properties:
                 id:
                     type: string
-                isAdmin:
-                    type: boolean
+                role:
+                    description: ''
+                    enum:
+                        - ADMIN
+                        - USER
+                    type: string
             example:
                 id: fakeId
-                isAdmin: false
+                role: ADMIN
         UserList:
             title: Root Type for UserList
             description: ''

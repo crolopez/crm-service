@@ -1,5 +1,6 @@
 package crolopez.thecrmservice.user.infrastructure.persistence.mappers;
 
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto.RoleEnum;
 import crolopez.thecrmservice.shared.infrastructure.persistence.mappers.Mapper;
 import crolopez.thecrmservice.user.infrastructure.entities.UserDbEntity;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
@@ -12,7 +13,7 @@ public class UserMapper implements Mapper<UserDbEntity, UserEntity> {
     public UserEntity externalEntityToEntity(UserDbEntity userDbEntity) {
         return UserEntity.builder()
                 .id(userDbEntity.getId())
-                .isAdmin(userDbEntity.getIsAdmin())
+                .role(RoleEnum.valueOf(userDbEntity.getRole()))
                 .build();
     }
 
@@ -20,7 +21,7 @@ public class UserMapper implements Mapper<UserDbEntity, UserEntity> {
     public UserDbEntity entityToExternalEntity(UserEntity userEntity) {
         return UserDbEntity.builder()
                 .id(userEntity.getId())
-                .isAdmin(userEntity.getIsAdmin())
+                .role(userEntity.getRole().toString())
                 .build();
     }
 }

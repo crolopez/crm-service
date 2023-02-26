@@ -1,6 +1,6 @@
 package crolopez.thecrmservice.customer.application.services;
 
-import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
 
 import java.util.List;
 

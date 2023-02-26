@@ -1,7 +1,7 @@
 package crolopez.thecrmservice.user.application.services;
 
 import crolopez.thecrmservice.shared.application.repositories.PersistenceRepository;
-import crolopez.thecrmservice.shared.entities.dto.UserDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.user.domain.entities.UserEntity;
 import crolopez.thecrmservice.user.domain.factories.UserEntityFactory;
 import crolopez.thecrmservice.user.domain.factories.UserResponseFactory;
@@ -54,5 +54,10 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userEntityFactory.create(userDto);
         userEntity = userEntityRepository.update(id, userEntity);
         return userResponseFactory.create(userEntity);
+    }
+
+    @Override
+    public Long countUsers() {
+        return userEntityRepository.count();
     }
 }

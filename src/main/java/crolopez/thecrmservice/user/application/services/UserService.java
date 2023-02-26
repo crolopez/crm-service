@@ -1,6 +1,6 @@
 package crolopez.thecrmservice.user.application.services;
 
-import crolopez.thecrmservice.shared.entities.dto.UserDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 
 import java.util.List;
 
@@ -14,4 +14,6 @@ public interface UserService {
     UserDto deleteUser(String id);
 
     UserDto updateUser(String id, UserDto userDto);
+
+    Long countUsers();
 }

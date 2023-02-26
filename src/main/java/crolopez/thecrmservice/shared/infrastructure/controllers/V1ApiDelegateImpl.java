@@ -2,8 +2,8 @@ package crolopez.thecrmservice.shared.infrastructure.controllers;
 
 import crolopez.thecrmservice.customer.application.services.CustomerService;
 import crolopez.thecrmservice.login.application.services.LoginService;
-import crolopez.thecrmservice.shared.entities.dto.CustomerDto;
-import crolopez.thecrmservice.shared.entities.dto.UserDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.CustomerDto;
+import crolopez.thecrmservice.shared.domain.entities.dto.UserDto;
 import crolopez.thecrmservice.shared.infrastructure.api.V1ApiDelegate;
 import crolopez.thecrmservice.user.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
