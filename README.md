@@ -1,4 +1,4 @@
-# The CRM Service
+# CRM Service
 
 The purpose of this project is to define a REST API to manage customer data for a small store.
 
